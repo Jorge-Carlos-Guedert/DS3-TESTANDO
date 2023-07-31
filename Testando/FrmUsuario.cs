@@ -41,6 +41,15 @@ namespace Testando
 
             usmodelo.nome = txtnome.Text;
             usmodelo.senha = txtsenha.Text;
+            usmodelo.nomeCompleto = txtnomeCompleto.Text;
+            usmodelo.email = txtEmail.Text;
+            usmodelo.telefoneContato = txtTelContato.Text;
+            usmodelo.whatsapp = txtwhatsapp.Text;
+            usmodelo.endereco = txtEndCompleto.Text;
+            usmodelo.ceb = txtCeb.Text;
+            usmodelo.funcao= txtFuncao.Text;
+
+
 
             UsuarioController uscontrole =new UsuarioController();
 
@@ -77,6 +86,13 @@ namespace Testando
             txtnome.Text = dtUsuario.Rows[e.RowIndex].Cells["nome"].Value.ToString();
             txtId.Text = dtUsuario.Rows[e.RowIndex].Cells["idusuario"].Value.ToString();
             txtsenha.Text = dtUsuario.Rows[e.RowIndex].Cells["senha"].Value.ToString();
+            txtnomeCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["nomeCompleto"].Value.ToString();
+            txtEmail.Text = dtUsuario.Rows[e.RowIndex].Cells["email"].Value.ToString();
+            txtTelContato.Text = dtUsuario.Rows[e.RowIndex].Cells["telefoneContato"].Value.ToString();
+            txtwhatsapp.Text = dtUsuario.Rows[e.RowIndex].Cells["whatsapp"].Value.ToString();
+            txtEndCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["endereco"].Value.ToString();
+            txtCeb.Text = dtUsuario.Rows[e.RowIndex].Cells["ceb"].Value.ToString();
+            txtFuncao.Text = dtUsuario.Rows[e.RowIndex].Cells["funcao"].Value.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -96,6 +112,7 @@ namespace Testando
             txtnome.Text = dtUsuario.Rows[e.RowIndex].Cells["nome"].Value.ToString();
             txtId.Text = dtUsuario.Rows[e.RowIndex].Cells["idusuario"].Value.ToString();
             txtsenha.Text = dtUsuario.Rows[e.RowIndex].Cells["senha"].Value.ToString();
+
 
 
         }
@@ -140,6 +157,32 @@ namespace Testando
             else
             {
                 MessageBox.Show("Erro ao atualizar usuário!!");
+            }
+        }
+
+        private void txtsenha_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelNome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxIguais_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cboxIguais.Checked == true)
+            {
+                if(txtTelContato.Modified == true)
+                {
+                    txtwhatsapp = txtTelContato;
+                }
             }
         }
     }
