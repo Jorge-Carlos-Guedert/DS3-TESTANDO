@@ -55,6 +55,8 @@
             this.cboxIguais = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFuncao = new System.Windows.Forms.TextBox();
+            this.cBoxPerfil = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,9 +136,9 @@
             // 
             this.dtUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dtUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtUsuario.Location = new System.Drawing.Point(264, 134);
+            this.dtUsuario.Location = new System.Drawing.Point(970, 545);
             this.dtUsuario.Name = "dtUsuario";
-            this.dtUsuario.Size = new System.Drawing.Size(524, 264);
+            this.dtUsuario.Size = new System.Drawing.Size(442, 264);
             this.dtUsuario.TabIndex = 10;
             this.dtUsuario.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtUsuario_CellClick);
             this.dtUsuario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -184,7 +186,7 @@
             // 
             this.txtnomeCompleto.Location = new System.Drawing.Point(144, 159);
             this.txtnomeCompleto.Name = "txtnomeCompleto";
-            this.txtnomeCompleto.Size = new System.Drawing.Size(466, 20);
+            this.txtnomeCompleto.Size = new System.Drawing.Size(230, 20);
             this.txtnomeCompleto.TabIndex = 15;
             // 
             // email
@@ -200,7 +202,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(144, 193);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(466, 20);
+            this.txtEmail.Size = new System.Drawing.Size(230, 20);
             this.txtEmail.TabIndex = 17;
             // 
             // telContato
@@ -248,7 +250,7 @@
             // 
             this.txtEndCompleto.Location = new System.Drawing.Point(161, 313);
             this.txtEndCompleto.Name = "txtEndCompleto";
-            this.txtEndCompleto.Size = new System.Drawing.Size(466, 20);
+            this.txtEndCompleto.Size = new System.Drawing.Size(213, 20);
             this.txtEndCompleto.TabIndex = 23;
             // 
             // ceb
@@ -295,11 +297,31 @@
             this.txtFuncao.Size = new System.Drawing.Size(161, 20);
             this.txtFuncao.TabIndex = 28;
             // 
+            // cBoxPerfil
+            // 
+            this.cBoxPerfil.FormattingEnabled = true;
+            this.cBoxPerfil.Location = new System.Drawing.Point(408, 132);
+            this.cBoxPerfil.Name = "cBoxPerfil";
+            this.cBoxPerfil.Size = new System.Drawing.Size(121, 21);
+            this.cBoxPerfil.TabIndex = 29;
+            this.cBoxPerfil.SelectedIndexChanged += new System.EventHandler(this.cBoxPerfil_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(338, 140);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Perfil";
+            // 
             // FrmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1424, 861);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cBoxPerfil);
             this.Controls.Add(this.txtFuncao);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboxIguais);
@@ -329,6 +351,7 @@
             this.Controls.Add(this.btnConectar);
             this.Name = "FrmUsuario";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtUsuario)).EndInit();
             this.ResumeLayout(false);
@@ -364,6 +387,8 @@
         private System.Windows.Forms.CheckBox cboxIguais;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFuncao;
+        private System.Windows.Forms.ComboBox cBoxPerfil;
+        private System.Windows.Forms.Label label2;
     }
 }
 

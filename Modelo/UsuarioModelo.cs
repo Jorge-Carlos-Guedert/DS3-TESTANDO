@@ -20,6 +20,7 @@ namespace Modelo
         public string endereco;
         public string ceb;
         public string funcao;
+        public int idperfil;
 
 
         // construtor da classe modelo usuario
@@ -33,6 +34,7 @@ namespace Modelo
             endereco = null;
             ceb = null;
             funcao = null;
+            idperfil = 0;
         }
 
     }

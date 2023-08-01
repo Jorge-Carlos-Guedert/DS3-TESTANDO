@@ -17,6 +17,7 @@ namespace Testando
 
     {
         int codigo ;
+        int idperfil;
         public FrmUsuario()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace Testando
             usmodelo.endereco = txtEndCompleto.Text;
             usmodelo.ceb = txtCeb.Text;
             usmodelo.funcao= txtFuncao.Text;
-
+            usmodelo.idperfil = idperfil;
 
 
             UsuarioController uscontrole =new UsuarioController();
@@ -99,8 +100,11 @@ namespace Testando
         {
             // instanciar meu controller usuario
             UsuarioController usControle =new UsuarioController();
-            dtUsuario.DataSource = usControle.OberDados("select * from usuario");
+            dtUsuario.DataSource = usControle.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
             MessageBox.Show("Seja bem vindo(a)");
+            cBoxPerfil.DataSource = usControle.OberDados("select * from perfil");
+            cBoxPerfil.DisplayMember = "perfil";
+            cBoxPerfil.ValueMember = "id_perfil";
         }
 
         private void dtUsuario_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -184,6 +188,12 @@ namespace Testando
                     txtwhatsapp = txtTelContato;
                 }
             }
+        }
+
+        private void cBoxPerfil_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            idperfil = Convert.ToInt32(((DataRowView)cBoxPerfil.SelectedItem)["id_perfil"]);
+           
         }
     }
 }
