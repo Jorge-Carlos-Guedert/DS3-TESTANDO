@@ -65,7 +65,7 @@ namespace Controller
         public bool editar(UsuarioModelo us)
         {
             bool resultado = false;
-            string sql = "UPDATE usuario set nome=@nome, senha=@senha where idusuario=@id";
+            string sql = "UPDATE usuario set nome=@nome, senha=@senha, id_perfil=@perfil where idusuario=@id";
             MySqlConnection sqlCon = con.getConexao();
             sqlCon.Open();
             MySqlCommand cmd = new MySqlCommand(sql, sqlCon);
@@ -75,12 +75,35 @@ namespace Controller
             cmd.Parameters.AddWithValue("@nome", us.nome);
             cmd.Parameters.AddWithValue("@senha", us.senha);
             cmd.Parameters.AddWithValue("@id", us.idusuario);
+            cmd.Parameters.AddWithValue("@perfil", us.idperfil);
             if (cmd.ExecuteNonQuery() >= 1)
                 resultado = true;
             sqlCon.Close();
             return resultado;
 
 
+        }
+
+        public bool logar(UsuarioModelo us)
+        {
+            bool resultado = false;
+            int registro; // retorna o numero de registros
+
+            string sql = "SELECT count(idusuario) from usuario  where nome=@usuario and senha=@senha";
+            MySqlConnection sqlCon = con.getConexao();
+            sqlCon.Open();
+            MySqlCommand command = new MySqlCommand(sql, sqlCon);
+            command.CommandType = System.Data.CommandType.Text;
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("@usuario", us.nome);
+            command.Parameters.AddWithValue("@senha", us.senha);
+            registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
+
+            if(registro==1)
+                resultado=true;
+
+           
+            return resultado;
         }
     }
 }

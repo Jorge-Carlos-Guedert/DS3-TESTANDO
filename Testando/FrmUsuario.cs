@@ -16,8 +16,9 @@ namespace Testando
     public partial class FrmUsuario : Form
 
     {
-        int codigo ;
+        int codigo;
         int idperfil;
+        
         public FrmUsuario()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace Testando
         private void button2_Click(object sender, EventArgs e)
         {
             Conexao conexao = new Conexao();
-           if( conexao.getConexao() == null)
+            if (conexao.getConexao() == null)
             {
                 MessageBox.Show("Erro na conexão");
             }
@@ -48,18 +49,20 @@ namespace Testando
             usmodelo.whatsapp = txtwhatsapp.Text;
             usmodelo.endereco = txtEndCompleto.Text;
             usmodelo.ceb = txtCeb.Text;
-            usmodelo.funcao= txtFuncao.Text;
+            usmodelo.funcao = txtFuncao.Text;
             usmodelo.idperfil = idperfil;
 
 
-            UsuarioController uscontrole =new UsuarioController();
+            UsuarioController usController = new UsuarioController();
 
             if (usmodelo.nome != "" && usmodelo.senha != "")
             {
 
-                if (uscontrole.cadastrar(usmodelo) == true)
+                if (usController.cadastrar(usmodelo) == true)
                 {
                     MessageBox.Show("Usuário Cadastrado " + txtnome.Text);
+                    dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+
                 }
                 else
                 {
@@ -87,22 +90,23 @@ namespace Testando
             txtnome.Text = dtUsuario.Rows[e.RowIndex].Cells["nome"].Value.ToString();
             txtId.Text = dtUsuario.Rows[e.RowIndex].Cells["idusuario"].Value.ToString();
             txtsenha.Text = dtUsuario.Rows[e.RowIndex].Cells["senha"].Value.ToString();
-            txtnomeCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["nomeCompleto"].Value.ToString();
-            txtEmail.Text = dtUsuario.Rows[e.RowIndex].Cells["email"].Value.ToString();
-            txtTelContato.Text = dtUsuario.Rows[e.RowIndex].Cells["telefoneContato"].Value.ToString();
-            txtwhatsapp.Text = dtUsuario.Rows[e.RowIndex].Cells["whatsapp"].Value.ToString();
-            txtEndCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["endereco"].Value.ToString();
-            txtCeb.Text = dtUsuario.Rows[e.RowIndex].Cells["ceb"].Value.ToString();
-            txtFuncao.Text = dtUsuario.Rows[e.RowIndex].Cells["funcao"].Value.ToString();
+            //txtnomeCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["nomeCompleto"].Value.ToString();
+            //txtEmail.Text = dtUsuario.Rows[e.RowIndex].Cells["email"].Value.ToString();
+            //txtTelContato.Text = dtUsuario.Rows[e.RowIndex].Cells["telefoneContato"].Value.ToString();
+            //txtwhatsapp.Text = dtUsuario.Rows[e.RowIndex].Cells["whatsapp"].Value.ToString();
+            //txtEndCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["endereco"].Value.ToString();
+            //txtCeb.Text = dtUsuario.Rows[e.RowIndex].Cells["ceb"].Value.ToString();
+            //txtFuncao.Text = dtUsuario.Rows[e.RowIndex].Cells["funcao"].Value.ToString();
+            cBoxPerfil.Text = dtUsuario.Rows[e.RowIndex].Cells["perfil"].Value.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             // instanciar meu controller usuario
-            UsuarioController usControle =new UsuarioController();
-            dtUsuario.DataSource = usControle.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
-            MessageBox.Show("Seja bem vindo(a)");
-            cBoxPerfil.DataSource = usControle.OberDados("select * from perfil");
+            UsuarioController usController = new UsuarioController();
+            dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+            //MessageBox.Show("Seja bem vindo(a)");
+            cBoxPerfil.DataSource = usController.OberDados("select * from perfil");
             cBoxPerfil.DisplayMember = "perfil";
             cBoxPerfil.ValueMember = "id_perfil";
         }
@@ -116,6 +120,7 @@ namespace Testando
             txtnome.Text = dtUsuario.Rows[e.RowIndex].Cells["nome"].Value.ToString();
             txtId.Text = dtUsuario.Rows[e.RowIndex].Cells["idusuario"].Value.ToString();
             txtsenha.Text = dtUsuario.Rows[e.RowIndex].Cells["senha"].Value.ToString();
+            cBoxPerfil.Text = dtUsuario.Rows[e.RowIndex].Cells["perfil"].Value.ToString();
 
 
 
@@ -154,14 +159,27 @@ namespace Testando
             usModelo.nome = txtnome.Text;
             usModelo.senha = txtsenha.Text;
             usModelo.idusuario = codigo;
+
+            usModelo.nomeCompleto = txtnomeCompleto.Text;
+            usModelo.email = txtEmail.Text;
+            usModelo.telefoneContato = txtTelContato.Text;
+            usModelo.whatsapp = txtwhatsapp.Text;
+            usModelo.endereco = txtEndCompleto.Text;
+            usModelo.ceb = txtCeb.Text;
+            usModelo.funcao = txtFuncao.Text;
+            usModelo.idperfil = idperfil;
+
             if (usController.editar(usModelo) == true)
             {
                 MessageBox.Show("Usuário atualizado com sucesso!!");
+                dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+
             }
             else
             {
                 MessageBox.Show("Erro ao atualizar usuário!!");
             }
+
         }
 
         private void txtsenha_TextChanged(object sender, EventArgs e)
@@ -181,9 +199,9 @@ namespace Testando
 
         private void cboxIguais_CheckedChanged(object sender, EventArgs e)
         {
-            if(cboxIguais.Checked == true)
+            if (cboxIguais.Checked == true)
             {
-                if(txtTelContato.Modified == true)
+                if (txtTelContato.Modified == true)
                 {
                     txtwhatsapp = txtTelContato;
                 }
@@ -193,7 +211,7 @@ namespace Testando
         private void cBoxPerfil_SelectedIndexChanged(object sender, EventArgs e)
         {
             idperfil = Convert.ToInt32(((DataRowView)cBoxPerfil.SelectedItem)["id_perfil"]);
-           
+
         }
     }
 }
