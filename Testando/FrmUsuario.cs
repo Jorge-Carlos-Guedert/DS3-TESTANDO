@@ -172,7 +172,12 @@ namespace Testando
             if (usController.editar(usModelo) == true)
             {
                 MessageBox.Show("Usuário atualizado com sucesso!!");
-                dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+                dtUsuario.DataSource = usController.OberDados("select usuario.idusuario," +
+                    " usuario.nome," +
+                    " usuario.senha," +
+                    " perfil.perfil" +
+                    " from usuario inner join perfil on " +
+                    "usuario.id_perfil=perfil.id_perfil");
 
             }
             else
