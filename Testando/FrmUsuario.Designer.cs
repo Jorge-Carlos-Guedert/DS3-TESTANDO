@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnConectar = new System.Windows.Forms.Button();
             this.labId = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
             this.txtFuncao = new System.Windows.Forms.TextBox();
             this.cBoxPerfil = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtUsuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,9 +120,11 @@
             // 
             this.txtsenha.Location = new System.Drawing.Point(97, 134);
             this.txtsenha.Name = "txtsenha";
+            this.txtsenha.PasswordChar = '*';
             this.txtsenha.Size = new System.Drawing.Size(100, 20);
             this.txtsenha.TabIndex = 8;
             this.txtsenha.TextChanged += new System.EventHandler(this.txtsenha_TextChanged);
+            this.txtsenha.MouseHover += new System.EventHandler(this.txtsenha_MouseHover);
             // 
             // btnCadastrar
             // 
@@ -389,6 +393,7 @@
         private System.Windows.Forms.TextBox txtFuncao;
         private System.Windows.Forms.ComboBox cBoxPerfil;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

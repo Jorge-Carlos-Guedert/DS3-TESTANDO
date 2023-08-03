@@ -218,5 +218,10 @@ namespace Testando
             idperfil = Convert.ToInt32(((DataRowView)cBoxPerfil.SelectedItem)["id_perfil"]);
 
         }
+
+        private void txtsenha_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(txtsenha, " Tamanho 8 caracter letras e numeros");
+        }
     }
 }

@@ -84,12 +84,39 @@ namespace Controller
 
         }
 
-        public bool logar(UsuarioModelo us)
+
+        //metodo para carregar o usuario
+
+        public UsuarioModelo CarregaUsuario(int codigo)
         {
-            bool resultado = false;
+            UsuarioModelo us = new UsuarioModelo();
+            MySqlConnection sqlCon = con.getConexao();
+            sqlCon.Open();
+            string sql = "SELECT * from usuario where idusuario=@id";
+            MySqlCommand cmd = new MySqlCommand(@sql, sqlCon);
+            cmd.Parameters.AddWithValue("@id", codigo); // substituo o valor do código
+            MySqlDataReader registro = cmd.ExecuteReader(); //leia os dados da consulta
+            if (registro.HasRows)// existe linha de reagistro
+            {
+                registro.Read(); // leia o registro
+                // gravando as informações no modelo usuario
+                us.nome = registro["nome"].ToString();
+                us.senha = registro["senha"].ToString();
+                us.idusuario = Convert.ToInt32(registro["idusuario"]);
+                us.idperfil = Convert.ToInt32(registro["id_perfil"]);
+            }
+            sqlCon.Close();
+            return us;
+        }
+
+        // finaliza o metodo
+
+        public int logar(UsuarioModelo us)
+        {
+            
             int registro; // retorna o numero de registros
 
-            string sql = "SELECT count(idusuario) from usuario  where nome=@usuario and senha=@senha";
+            string sql = "SELECT idusuario from usuario  where nome=@usuario and senha=@senha";
             MySqlConnection sqlCon = con.getConexao();
             sqlCon.Open();
             MySqlCommand command = new MySqlCommand(sql, sqlCon);
@@ -99,11 +126,7 @@ namespace Controller
             command.Parameters.AddWithValue("@senha", us.senha);
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 
-            if(registro==1)
-                resultado=true;
-
-           
-            return resultado;
+            return registro; // devolvo o idusuario encontrado no banco
         }
     }
 }

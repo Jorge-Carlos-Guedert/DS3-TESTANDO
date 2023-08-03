@@ -22,6 +22,7 @@ namespace Testando
 
         private void btnLogar_Click(object sender, EventArgs e)
         {
+            int codigoUsuario;
             UsuarioModelo us = new UsuarioModelo();
             UsuarioController usController = new UsuarioController();
             us.nome = txtUsuarioLogin.Text;
@@ -30,17 +31,20 @@ namespace Testando
             if (string.IsNullOrEmpty(us.nome))
             {
                 MessageBox.Show("Nome vazio");
-                txtUsuarioLogin.Focus();
+                txtUsuarioLogin.Focus();// retorna ao campo vazio para posterior preenchimento
             }
             if (string.IsNullOrEmpty(us.senha))
             {
                 MessageBox.Show("Senha vazia");
-                txtSenhaLogin.Focus();
+                txtSenhaLogin.Focus(); // retorna ao campo vazio para posterior preenchimento
             }
+            codigoUsuario = usController.logar(us); // guarda o id do usuario retornado da consulta
 
-            if(usController.logar(us) == true)
+            MessageBox.Show("Usuário  ID=" + codigoUsuario.ToString());
+            if(usController.logar(us) >=1)
             {
-                FrmPrincipal principal = new FrmPrincipal();
+                this.Hide(); // oculta a janela
+                FrmPrincipal principal = new FrmPrincipal(codigoUsuario);
                 principal.ShowDialog();
             }
             else

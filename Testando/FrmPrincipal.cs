@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Controller;
+using Modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +14,14 @@ namespace Testando
 {
     public partial class FrmPrincipal : Form
     {
-        public FrmPrincipal()
+        int idUsu; // crio a  variavel do id do usuario local
+        UsuarioController usController = new UsuarioController(); // declaro os objetos para instanciar
+        UsuarioModelo usModelo = new UsuarioModelo(); // declaro os objetos para instanciar
+        public FrmPrincipal(int codigo) // passa o id por parametro do formprincipal
         {
+            idUsu = codigo;
+            MessageBox.Show("Seja bem vindo Id" + codigo);
+
             InitializeComponent();
         }
 
@@ -35,7 +43,18 @@ namespace Testando
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            // carrego no usuario as Informações 
+            usModelo = usController.CarregaUsuario(idUsu);
+            label1.Text = usModelo.nome;
 
+            if (usModelo.idperfil == 4)
+            {
+                usuárioToolStripMenuItem.Visible = true;
+            }
+            else if (usModelo.idperfil == 24)
+            {
+                usuárioToolStripMenuItem.Visible = false;
+            }
         }
     }
 }
