@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,10 @@ namespace Testando
 {
     public partial class FrmListarUsuario : Form
     {
+        string sql; // 
+
+        int valor; 
+        UsuarioController uscontroller = new UsuarioController();
         public FrmListarUsuario()
         {
             InitializeComponent();
@@ -22,6 +27,35 @@ namespace Testando
 
         }
 
-        
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            
+            
+            
+            if (string.IsNullOrEmpty(txtPesquisar.Text))
+            {
+                sql = "SELECT * from usuario";
+            }
+            else
+            {
+                bool teste = int.TryParse(txtPesquisar.Text, out valor);
+                if (teste)
+                {
+                    sql = "SELECT * from usuario where idusuario =" + valor;
+                }
+                else
+                {
+                    sql = "SELECT * from usuario where nome like '%" + txtPesquisar.Text + "%'";
+                }
+                
+            }
+            dtUsuario.DataSource = uscontroller.OberDados(sql);
+        }
+
+        private void FrmListarUsuario_Load(object sender, EventArgs e)
+        {
+            //sql = "SELECT * from usuario";
+            //dtUsuario.DataSource = uscontroller.OberDados(sql);
+        }
     }
 }

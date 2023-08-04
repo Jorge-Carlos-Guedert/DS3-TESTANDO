@@ -45,7 +45,7 @@ namespace Testando
         {
             // carrego no usuario as Informações 
             usModelo = usController.CarregaUsuario(idUsu);
-            label1.Text = usModelo.nome;
+            //label1.Text = usModelo.nome;
 
             if (usModelo.idperfil == 4)
             {
@@ -55,6 +55,20 @@ namespace Testando
             {
                 usuárioToolStripMenuItem.Visible = false;
             }
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmLogin login = new FrmLogin();
+
+            var result = MessageBox.Show("Deseja sair do sistema ?", "Sair do sistema:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+              
+                
+                login.ShowDialog();
+            }
+            
         }
     }
 }

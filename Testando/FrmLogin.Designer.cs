@@ -101,6 +101,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmLogin";
             this.Text = "FrmLogin";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
