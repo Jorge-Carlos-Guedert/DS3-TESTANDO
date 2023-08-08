@@ -57,5 +57,10 @@ namespace Testando
             //sql = "SELECT * from usuario";
             //dtUsuario.DataSource = uscontroller.OberDados(sql);
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            uscontroller.gerarPdf(sql);
+        }
     }
 }

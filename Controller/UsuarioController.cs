@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Modelo;
 using System.Data;
+using PdfSharp; // biblioteca gerar pdf
+using PdfSharp.Drawing;// para desenhar
+using PdfSharp.Pdf; // para conversão 
+using System.Diagnostics;
 
 namespace Controller
 {
@@ -127,6 +131,65 @@ namespace Controller
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 
             return registro; // devolvo o idusuario encontrado no banco
+        }
+
+        public void gerarPdf(string sql)
+        {
+           // chamo minha conexão mysql
+            MySqlConnection SqlCon = con.getConexao();
+            // preparo o comendo sql
+            UsuarioModelo us = new UsuarioModelo();
+            MySqlCommand cmd = new MySqlCommand(sql, SqlCon);
+
+            MySqlDataAdapter dados; // prepara os dados
+
+            DataSet ds = new DataSet();
+
+            try // teste de consulta
+            {
+                int i = 0; // registro
+                int ypoint = 0; // espaço do conteudo
+                
+                SqlCon.Open(); // abro a conexão
+                dados = new MySqlDataAdapter(cmd); // recuperando as informações
+                dados.Fill(ds); //  Carrega as informações carregadas
+                PdfDocument pdf = new PdfDocument();
+                // chamo a instancia do PDF
+                pdf.Info.Title = "Listar Usuário";
+                PdfPage page = pdf.AddPage();// gera uma nova página
+                XGraphics grafic = XGraphics.FromPdfPage(page);
+                XFont font = new XFont("arial", 12, XFontStyle.Regular); // defino a fonte e o tamanho
+                ypoint = ypoint + 75;
+
+                grafic.DrawString(ds.Tables[0].Columns[0].ColumnName, font, XBrushes.Black, new XRect(20, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                grafic.DrawString(ds.Tables[0].Columns[1].ColumnName, font, XBrushes.Black, new XRect(120, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                grafic.DrawString(ds.Tables[0].Columns[10].ColumnName, font, XBrushes.Black, new XRect(220, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+
+                ypoint = ypoint + 40;
+
+                for (  i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    // guarde no objeto nome o resultado da coluna 
+                    us.idusuario = Convert.ToInt32(ds.Tables[0].Rows[i].ItemArray[0].ToString());
+                    us.nome = ds.Tables[0].Rows[i].ItemArray[1].ToString();
+                    us.idperfil = Convert.ToInt32(ds.Tables[0].Rows[i].ItemArray[10].ToString());
+                    grafic.DrawString(us.idusuario.ToString(),font,XBrushes.Black,new XRect(40, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                    grafic.DrawString(us.nome,font,XBrushes.Black,new XRect(100, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                    grafic.DrawString(us.idperfil.ToString(),font,XBrushes.Black,new XRect(220, ypoint, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                    ypoint = ypoint + 25; // nova posição
+                }
+
+                string pdffilename = "Listar Usuário.pdf";
+
+                pdf.Save(pdffilename);
+
+                Process.Start(pdffilename);
+                
+            } catch(Exception ex)
+            {
+                throw new ApplicationException(ex.ToString());
+            }
+
         }
     }
 }
