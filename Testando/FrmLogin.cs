@@ -25,8 +25,8 @@ namespace Testando
             int codigoUsuario;
             UsuarioModelo us = new UsuarioModelo();
             UsuarioController usController = new UsuarioController();
-            us.nome = txtUsuarioLogin.Text;
-            us.senha = txtSenhaLogin.Text;
+            us.nome = "jorge"; //txtUsuarioLogin.Text;
+            us.senha = "chefe";// txtSenhaLogin.Text;
 
             if (string.IsNullOrEmpty(us.nome))
             {
@@ -55,6 +55,8 @@ namespace Testando
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
+           // this.Hide();
+
             this.Close();
         }
     }

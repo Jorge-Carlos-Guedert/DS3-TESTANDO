@@ -26,14 +26,18 @@ namespace Testando
 
             
             produtoModelo.descricaoProduto = txtDescricao.Text;
-            produtoModelo.precoProduto = Convert.ToInt32(txtPreco.Text);
-            produtoModelo.quantidadeProduto = Convert.ToInt32(txtQuantidade.Text);
+            //produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
+            produtoModelo.precoProduto = Convert.ToDouble(txtPreco.Text);
+            MessageBox.Show($"{produtoModelo.precoProduto}");
+            produtoModelo.quantidadeProduto = Convert.ToDouble(txtQuantidade.Text);
+            MessageBox.Show($"{produtoModelo.quantidadeProduto}");
 
             produtoModelo.validadeProduto = dateValidade.Value;
 
             if (checkBoxPerecivel.Checked) 
             { 
-                produtoModelo.pericivelProduto = true ; 
+                produtoModelo.pericivelProduto = true ;
+                MessageBox.Show($"{produtoModelo.pericivelProduto}");
             } else 
             { 
                 produtoModelo.pericivelProduto = false ; 

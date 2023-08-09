@@ -21,7 +21,7 @@ namespace Controller
 
                 string[] campos = { "@descricao", "@preco", "@quantidade", "@perecivel", "@validade", "@foto" };
 
-                string[] valores = { prod.descricaoProduto, prod.precoProduto.ToString(), prod.quantidadeProduto.ToString(), prod.pericivelProduto.ToString(), prod.validadeProduto.ToString(), prod.fotoProduto };
+                object[] valores = { prod.descricaoProduto, prod.precoProduto, prod.quantidadeProduto, prod.pericivelProduto, prod.validadeProduto, prod.fotoProduto };
 
                 if (con.cadastrar(campos, valores, sql) >= 1)
                 {
