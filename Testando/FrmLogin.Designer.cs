@@ -42,7 +42,7 @@
             this.label1.Location = new System.Drawing.Point(289, 103);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 4;
             this.label1.Text = "Usuário : ";
             // 
             // label2
@@ -51,7 +51,7 @@
             this.label2.Location = new System.Drawing.Point(292, 156);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Senha :";
             // 
             // txtUsuarioLogin
@@ -59,7 +59,7 @@
             this.txtUsuarioLogin.Location = new System.Drawing.Point(348, 103);
             this.txtUsuarioLogin.Name = "txtUsuarioLogin";
             this.txtUsuarioLogin.Size = new System.Drawing.Size(100, 20);
-            this.txtUsuarioLogin.TabIndex = 2;
+            this.txtUsuarioLogin.TabIndex = 0;
             // 
             // txtSenhaLogin
             // 
@@ -67,14 +67,14 @@
             this.txtSenhaLogin.Name = "txtSenhaLogin";
             this.txtSenhaLogin.PasswordChar = '*';
             this.txtSenhaLogin.Size = new System.Drawing.Size(100, 20);
-            this.txtSenhaLogin.TabIndex = 3;
+            this.txtSenhaLogin.TabIndex = 1;
             // 
             // btnLogar
             // 
             this.btnLogar.Location = new System.Drawing.Point(214, 273);
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(75, 23);
-            this.btnLogar.TabIndex = 4;
+            this.btnLogar.TabIndex = 2;
             this.btnLogar.Text = "Login";
             this.btnLogar.UseVisualStyleBackColor = true;
             this.btnLogar.Click += new System.EventHandler(this.btnLogar_Click);
@@ -84,7 +84,7 @@
             this.btnCancelarLogin.Location = new System.Drawing.Point(484, 273);
             this.btnCancelarLogin.Name = "btnCancelarLogin";
             this.btnCancelarLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarLogin.TabIndex = 5;
+            this.btnCancelarLogin.TabIndex = 3;
             this.btnCancelarLogin.Text = "Cancelar";
             this.btnCancelarLogin.UseVisualStyleBackColor = true;
             // 

@@ -70,5 +70,12 @@ namespace Testando
             }
             
         }
+
+        private void produtoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmProduto  prod = new FrmProduto(); // criou o formulário  
+            prod.MdiParent = this; // integra a janela
+            prod.Show(); // mostrar a tela   
+        }
     }
 }
