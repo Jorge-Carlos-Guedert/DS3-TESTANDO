@@ -45,7 +45,7 @@ namespace Testando
         {
             // carrego no usuario as Informações 
             usModelo = usController.CarregaUsuario(idUsu);
-            //label1.Text = usModelo.nome;
+            
 
             if (usModelo.idperfil == 4)
             {

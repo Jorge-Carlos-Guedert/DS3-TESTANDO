@@ -57,7 +57,13 @@ namespace Testando
         {
            // this.Hide();
 
-            this.Close();
+            //this.Close();
+        }
+
+        private void btnCancelarLogin_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            
         }
     }
 }

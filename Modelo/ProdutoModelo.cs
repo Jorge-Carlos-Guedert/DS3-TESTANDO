@@ -12,8 +12,8 @@ namespace Modelo
     {
         private int codigo;
         private string descricao;
-        private double preco;
-        private double quantidade;
+        private decimal preco;
+        private decimal quantidade;
         private bool pericivel;
         private DateTime validade;
         private string foto;
@@ -26,8 +26,8 @@ namespace Modelo
             // inicializando os valores default dos atributos do produto modelo
             this.codigo = 0;
             this.descricao = "";
-            this.preco = 0.00;
-            this.quantidade = 0.00;
+            this.preco = 0;
+            this.quantidade = 0;
             this.pericivel = false;
             this.validade = DateTime.Now;
             this.foto = "";
@@ -48,13 +48,13 @@ namespace Modelo
             set { descricao = value; }
         }
 
-        public double precoProduto
+        public decimal precoProduto
         {
             get { return preco; }
             set { preco = value; }
         }
 
-        public double quantidadeProduto
+        public decimal quantidadeProduto
         {
             get { return quantidade; }
             set { quantidade = value; }

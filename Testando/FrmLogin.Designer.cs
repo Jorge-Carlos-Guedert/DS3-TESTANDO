@@ -87,6 +87,7 @@
             this.btnCancelarLogin.TabIndex = 3;
             this.btnCancelarLogin.Text = "Cancelar";
             this.btnCancelarLogin.UseVisualStyleBackColor = true;
+            this.btnCancelarLogin.Click += new System.EventHandler(this.btnCancelarLogin_Click);
             // 
             // FrmLogin
             // 

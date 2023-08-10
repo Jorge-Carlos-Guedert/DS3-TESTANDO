@@ -37,15 +37,15 @@
             this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.checkBoxPerecivel = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblValidade = new System.Windows.Forms.Label();
             this.dateValidade = new System.Windows.Forms.DateTimePicker();
             this.btnInserir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ptbFoto = new System.Windows.Forms.PictureBox();
+            this.lblFoto = new System.Windows.Forms.Label();
             this.btnFoto = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // Código
@@ -97,6 +97,7 @@
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(100, 20);
             this.txtPreco.TabIndex = 5;
+            this.txtPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPreco_KeyPress);
             // 
             // txtQuantidade
             // 
@@ -121,15 +122,16 @@
             this.checkBoxPerecivel.TabIndex = 8;
             this.checkBoxPerecivel.Text = "Produto Perecível";
             this.checkBoxPerecivel.UseVisualStyleBackColor = true;
+            this.checkBoxPerecivel.Click += new System.EventHandler(this.checkBoxPerecivel_Click);
             // 
-            // label5
+            // lblValidade
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 282);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Validade";
+            this.lblValidade.AutoSize = true;
+            this.lblValidade.Location = new System.Drawing.Point(53, 282);
+            this.lblValidade.Name = "lblValidade";
+            this.lblValidade.Size = new System.Drawing.Size(48, 13);
+            this.lblValidade.TabIndex = 9;
+            this.lblValidade.Text = "Validade";
             // 
             // dateValidade
             // 
@@ -156,6 +158,7 @@
             this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
@@ -166,22 +169,23 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // ptbFoto
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(411, 44);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(302, 207);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.ptbFoto.Location = new System.Drawing.Point(411, 44);
+            this.ptbFoto.Name = "ptbFoto";
+            this.ptbFoto.Size = new System.Drawing.Size(302, 207);
+            this.ptbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbFoto.TabIndex = 14;
+            this.ptbFoto.TabStop = false;
             // 
-            // label1
+            // lblFoto
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(441, 274);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "label1";
+            this.lblFoto.AutoSize = true;
+            this.lblFoto.Location = new System.Drawing.Point(441, 274);
+            this.lblFoto.Name = "lblFoto";
+            this.lblFoto.Size = new System.Drawing.Size(35, 13);
+            this.lblFoto.TabIndex = 15;
+            this.lblFoto.Text = "label1";
             // 
             // btnFoto
             // 
@@ -191,6 +195,7 @@
             this.btnFoto.TabIndex = 16;
             this.btnFoto.Text = "Inserir Foto";
             this.btnFoto.UseVisualStyleBackColor = true;
+            this.btnFoto.Click += new System.EventHandler(this.btnFoto_Click);
             // 
             // FrmProduto
             // 
@@ -198,13 +203,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnFoto);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lblFoto);
+            this.Controls.Add(this.ptbFoto);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnInserir);
             this.Controls.Add(this.dateValidade);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblValidade);
             this.Controls.Add(this.checkBoxPerecivel);
             this.Controls.Add(this.txtDescricao);
             this.Controls.Add(this.txtQuantidade);
@@ -216,7 +221,8 @@
             this.Controls.Add(this.Código);
             this.Name = "FrmProduto";
             this.Text = "Cadastro de Produto";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmProduto_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,13 +239,13 @@
         private System.Windows.Forms.TextBox txtQuantidade;
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.CheckBox checkBoxPerecivel;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblValidade;
         private System.Windows.Forms.DateTimePicker dateValidade;
         private System.Windows.Forms.Button btnInserir;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox ptbFoto;
+        private System.Windows.Forms.Label lblFoto;
         private System.Windows.Forms.Button btnFoto;
     }
 }

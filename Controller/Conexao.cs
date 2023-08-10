@@ -55,5 +55,13 @@ namespace Controller
             return registro;
 
         }
+
+        public int atualizar(string[]campos, object[]valores, string sql)
+        {
+            int registro = 0;
+
+
+            return registro;
+        }
     }
 }

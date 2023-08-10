@@ -14,22 +14,25 @@ namespace Testando
 {
     public partial class FrmProduto : Form
     {
+            // instanciar o objeto produto
+            ProdutoModelo produtoModelo = new ProdutoModelo();
         public FrmProduto()
         {
             InitializeComponent();
+            
         }
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            // instanciar o objeto produto
-            ProdutoModelo produtoModelo = new ProdutoModelo();
 
-            
+            try
+            {
+
             produtoModelo.descricaoProduto = txtDescricao.Text;
             //produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
-            produtoModelo.precoProduto = Convert.ToDouble(txtPreco.Text);
+            produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
             MessageBox.Show($"{produtoModelo.precoProduto}");
-            produtoModelo.quantidadeProduto = Convert.ToDouble(txtQuantidade.Text);
+            produtoModelo.quantidadeProduto = Convert.ToDecimal(txtQuantidade.Text);
             MessageBox.Show($"{produtoModelo.quantidadeProduto}");
 
             produtoModelo.validadeProduto = dateValidade.Value;
@@ -38,10 +41,14 @@ namespace Testando
             { 
                 produtoModelo.pericivelProduto = true ;
                 MessageBox.Show($"{produtoModelo.pericivelProduto}");
+                
+                
             } else 
             { 
                 produtoModelo.pericivelProduto = false ; 
             }
+
+            produtoModelo.fotoProduto = lblFoto.Text;
 
             ProdutoController pController = new ProdutoController();
             if(pController.cadastrarProduto(produtoModelo) == true)
@@ -52,9 +59,86 @@ namespace Testando
             {
                 MessageBox.Show("Erro no cadastro");
             }
+            } catch(Exception ex)
+            {
+              MessageBox.Show("Preencha os campos para serem inseridos" + ex.Message);
+            }
 
 
 
+        }
+
+        private void btnFoto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog foto = new OpenFileDialog(); // chamo a caixa de dialogo para a foto
+                foto.Filter = "Image File(*.jpg; *.png; *.gif) | *.jpg; *.png; *.gif";
+                if(foto.ShowDialog() == DialogResult.OK)
+                {
+                    lblFoto.Visible = true;
+                    lblFoto.Text = foto.FileName; // mostra o nome e caminho da foto
+
+                    Image arquivo = Image.FromFile(foto.FileName);  // caminho da imagem para ser exibido no forms
+                    ptbFoto.Image = arquivo; // carrega a foto   
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um Arquivo para a foto:");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }  
+        }
+
+        private void checkBoxPerecivel_Click(object sender, EventArgs e)
+        {
+            if (checkBoxPerecivel.Checked)
+            {
+                lblValidade.Visible = true;
+                dateValidade.Visible=true;
+
+
+            }
+            else
+            {
+                lblValidade.Visible = false;
+                dateValidade.Visible = false;
+            }
+        }
+
+        private void FrmProduto_Load(object sender, EventArgs e)
+        {
+            lblFoto.Visible = false;
+            lblValidade.Visible = false;
+            dateValidade.Visible = false;
+        }
+
+        private void txtPreco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char delete = (char)8; //codigo ascii para o backspace
+            e.Handled =!char.IsDigit(e.KeyChar) && e.KeyChar != delete && e.KeyChar != (char)44;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            produtoModelo.descricaoProduto = txtDescricao.Text;
+            produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
+            produtoModelo.quantidadeProduto = Convert.ToDecimal(txtQuantidade.Text);
+            
+            produtoModelo.codigoProduto = Convert.ToInt32(txtCodigo.Text);
+
+            if (checkBoxPerecivel.Checked)
+            {
+                produtoModelo.pericivelProduto = true;
+            }
+            else
+            {
+                produtoModelo.pericivelProduto= false;
+            }
+            produtoModelo.validadeProduto = dateValidade.Value;
         }
     }
 }
