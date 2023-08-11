@@ -54,7 +54,7 @@
             this.Código.Location = new System.Drawing.Point(53, 39);
             this.Código.Name = "Código";
             this.Código.Size = new System.Drawing.Size(40, 13);
-            this.Código.TabIndex = 0;
+            this.Código.TabIndex = 9;
             this.Código.Text = "Código";
             // 
             // txtCodigo
@@ -70,7 +70,7 @@
             this.label2.Location = new System.Drawing.Point(53, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 10;
             this.label2.Text = "Descrição";
             // 
             // label3
@@ -79,7 +79,7 @@
             this.label3.Location = new System.Drawing.Point(53, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 11;
             this.label3.Text = "Preço";
             // 
             // label4
@@ -88,7 +88,7 @@
             this.label4.Location = new System.Drawing.Point(53, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 12;
             this.label4.Text = "Quantidade";
             // 
             // txtPreco
@@ -96,7 +96,7 @@
             this.txtPreco.Location = new System.Drawing.Point(123, 118);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(100, 20);
-            this.txtPreco.TabIndex = 5;
+            this.txtPreco.TabIndex = 1;
             this.txtPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPreco_KeyPress);
             // 
             // txtQuantidade
@@ -104,14 +104,14 @@
             this.txtQuantidade.Location = new System.Drawing.Point(123, 161);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(100, 20);
-            this.txtQuantidade.TabIndex = 6;
+            this.txtQuantidade.TabIndex = 2;
             // 
             // txtDescricao
             // 
             this.txtDescricao.Location = new System.Drawing.Point(123, 75);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(100, 20);
-            this.txtDescricao.TabIndex = 7;
+            this.txtDescricao.TabIndex = 0;
             // 
             // checkBoxPerecivel
             // 
@@ -119,7 +119,7 @@
             this.checkBoxPerecivel.Location = new System.Drawing.Point(111, 234);
             this.checkBoxPerecivel.Name = "checkBoxPerecivel";
             this.checkBoxPerecivel.Size = new System.Drawing.Size(112, 17);
-            this.checkBoxPerecivel.TabIndex = 8;
+            this.checkBoxPerecivel.TabIndex = 3;
             this.checkBoxPerecivel.Text = "Produto Perecível";
             this.checkBoxPerecivel.UseVisualStyleBackColor = true;
             this.checkBoxPerecivel.Click += new System.EventHandler(this.checkBoxPerecivel_Click);
@@ -130,7 +130,7 @@
             this.lblValidade.Location = new System.Drawing.Point(53, 282);
             this.lblValidade.Name = "lblValidade";
             this.lblValidade.Size = new System.Drawing.Size(48, 13);
-            this.lblValidade.TabIndex = 9;
+            this.lblValidade.TabIndex = 13;
             this.lblValidade.Text = "Validade";
             // 
             // dateValidade
@@ -138,14 +138,14 @@
             this.dateValidade.Location = new System.Drawing.Point(111, 274);
             this.dateValidade.Name = "dateValidade";
             this.dateValidade.Size = new System.Drawing.Size(200, 20);
-            this.dateValidade.TabIndex = 10;
+            this.dateValidade.TabIndex = 4;
             // 
             // btnInserir
             // 
             this.btnInserir.Location = new System.Drawing.Point(32, 368);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(75, 23);
-            this.btnInserir.TabIndex = 11;
+            this.btnInserir.TabIndex = 6;
             this.btnInserir.Text = "Inserir";
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
@@ -155,7 +155,7 @@
             this.btnEditar.Location = new System.Drawing.Point(202, 368);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 12;
+            this.btnEditar.TabIndex = 7;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -165,9 +165,10 @@
             this.btnExcluir.Location = new System.Drawing.Point(430, 368);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 13;
+            this.btnExcluir.TabIndex = 8;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // ptbFoto
             // 
@@ -184,7 +185,7 @@
             this.lblFoto.Location = new System.Drawing.Point(441, 274);
             this.lblFoto.Name = "lblFoto";
             this.lblFoto.Size = new System.Drawing.Size(35, 13);
-            this.lblFoto.TabIndex = 15;
+            this.lblFoto.TabIndex = 14;
             this.lblFoto.Text = "label1";
             // 
             // btnFoto
@@ -192,7 +193,7 @@
             this.btnFoto.Location = new System.Drawing.Point(595, 368);
             this.btnFoto.Name = "btnFoto";
             this.btnFoto.Size = new System.Drawing.Size(75, 23);
-            this.btnFoto.TabIndex = 16;
+            this.btnFoto.TabIndex = 5;
             this.btnFoto.Text = "Inserir Foto";
             this.btnFoto.UseVisualStyleBackColor = true;
             this.btnFoto.Click += new System.EventHandler(this.btnFoto_Click);
@@ -220,7 +221,6 @@
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.Código);
             this.Name = "FrmProduto";
-            this.Text = "Cadastro de Produto";
             this.Load += new System.EventHandler(this.FrmProduto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptbFoto)).EndInit();
             this.ResumeLayout(false);

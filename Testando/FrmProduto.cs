@@ -16,6 +16,7 @@ namespace Testando
     {
             // instanciar o objeto produto
             ProdutoModelo produtoModelo = new ProdutoModelo();
+        ProdutoController pController = new ProdutoController();
         public FrmProduto()
         {
             InitializeComponent();
@@ -50,8 +51,10 @@ namespace Testando
 
             produtoModelo.fotoProduto = lblFoto.Text;
 
-            ProdutoController pController = new ProdutoController();
-            if(pController.cadastrarProduto(produtoModelo) == true)
+                
+
+            
+            if(pController.cadastrarProduto(produtoModelo,1) == true)
             {
                 MessageBox.Show("Cadastrado com sucesso");
             }
@@ -139,6 +142,46 @@ namespace Testando
                 produtoModelo.pericivelProduto= false;
             }
             produtoModelo.validadeProduto = dateValidade.Value;
+            produtoModelo.fotoProduto = lblFoto.Text;
+
+            if(pController.cadastrarProduto(produtoModelo,2) == true)
+            {
+                MessageBox.Show("Atualizado com Sucesso !");
+            }
+            else
+            {
+                MessageBox.Show("Erro na Atualização");
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                produtoModelo.codigoProduto = Convert.ToInt32(txtCodigo.Text);
+
+
+                if (string.IsNullOrEmpty(produtoModelo.codigoProduto.ToString()))
+                {
+                    MessageBox.Show("Código está vazio :");
+
+                }
+                else
+                {
+
+                    if (pController.cadastrarProduto(produtoModelo, 3) == true)
+                    {
+                        MessageBox.Show("Produto excluido com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possivel excluir o produto indicado");
+                    }
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Erro" + ex.Message);
+            }
         }
     }
 }

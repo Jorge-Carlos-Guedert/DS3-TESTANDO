@@ -28,7 +28,7 @@ namespace Controller
 
         }
 
-        public int cadastrar(string[]campos, object[]valores, string sql)
+        public int cadastrar(int codigo, string[]campos, object[]valores, string sql)
         {
             int registro = 0;
             try // testar o cadastro
@@ -42,6 +42,10 @@ namespace Controller
                 for (int i = 0; i < valores.Length; i++)
                 {
                     cmd.Parameters.AddWithValue(campos[i], valores[i]);
+                }
+                if (codigo > 0)
+                {
+                    cmd.Parameters.AddWithValue("id", codigo);
                 }
                 registro = cmd.ExecuteNonQuery();
                 conn.Close();
