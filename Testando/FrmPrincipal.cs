@@ -78,5 +78,12 @@ namespace Testando
             prod.MdiParent = this; // integra a janela
             prod.Show(); // mostrar a tela   
         }
+
+        private void listarProdutoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmListarProduto listarProduto = new FrmListarProduto();
+            listarProduto.MdiParent = this;
+            listarProduto.Show();
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +68,23 @@ namespace Controller
 
 
             return registro;
+        }
+        
+        public DataTable ObterDados(string sql)
+        {
+            // crio uma nova tabela de dados
+            DataTable dt = new DataTable();
+            MySqlConnection conn = getConexao();
+            conn.Open(); // abre banco de dados
+            // preparo o commando sql
+            MySqlCommand sqlCon = new MySqlCommand(sql, conn);
+            //tipo de instrução de texto
+            sqlCon.CommandType = System.Data.CommandType.Text;
+            sqlCon.CommandText = sql;
+            MySqlDataAdapter dados = new MySqlDataAdapter(sqlCon);
+            dados.Fill(dt);// montar a tabela de dados
+            conn.Close();
+            return dt;// retorna a tabela de dados
         }
     }
 }

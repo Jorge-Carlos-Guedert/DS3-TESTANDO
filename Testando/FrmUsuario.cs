@@ -13,12 +13,16 @@ using Controller;
 
 namespace Testando
 {
+
     public partial class FrmUsuario : Form
+
+        
 
     {
         int codigo;
         int idperfil;
-        
+
+        Conexao usConexao = new Conexao();
         public FrmUsuario()
         {
             InitializeComponent();
@@ -54,6 +58,7 @@ namespace Testando
 
 
             UsuarioController usController = new UsuarioController();
+            
 
             if (usmodelo.nome != "" && usmodelo.senha != "")
             {
@@ -61,7 +66,7 @@ namespace Testando
                 if (usController.cadastrar(usmodelo) == true)
                 {
                     MessageBox.Show("Usuário Cadastrado " + txtnome.Text);
-                    dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+                    dtUsuario.DataSource = usConexao.ObterDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
 
                 }
                 else
@@ -104,9 +109,9 @@ namespace Testando
         {
             // instanciar meu controller usuario
             UsuarioController usController = new UsuarioController();
-            dtUsuario.DataSource = usController.OberDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+            dtUsuario.DataSource = usConexao.ObterDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
             //MessageBox.Show("Seja bem vindo(a)");
-            cBoxPerfil.DataSource = usController.OberDados("select * from perfil");
+            cBoxPerfil.DataSource = usConexao.ObterDados("select * from perfil");
             cBoxPerfil.DisplayMember = "perfil";
             cBoxPerfil.ValueMember = "id_perfil";
         }
@@ -172,7 +177,7 @@ namespace Testando
             if (usController.editar(usModelo) == true)
             {
                 MessageBox.Show("Usuário atualizado com sucesso!!");
-                dtUsuario.DataSource = usController.OberDados("select usuario.idusuario," +
+                dtUsuario.DataSource = usConexao.ObterDados("select usuario.idusuario," +
                     " usuario.nome," +
                     " usuario.senha," +
                     " perfil.perfil" +

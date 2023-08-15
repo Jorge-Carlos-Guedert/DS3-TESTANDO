@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Google.Protobuf.WellKnownTypes;
 using Modelo;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,16 @@ using System.Windows.Forms;
 
 namespace Testando
 {
+    
     public partial class FrmProduto : Form
     {
             // instanciar o objeto produto
             ProdutoModelo produtoModelo = new ProdutoModelo();
         ProdutoController pController = new ProdutoController();
+        Conexao pConexao = new Conexao();
+        
+        string sql;
+        int codigoProduto;
         public FrmProduto()
         {
             InitializeComponent();
@@ -32,16 +38,16 @@ namespace Testando
             produtoModelo.descricaoProduto = txtDescricao.Text;
             //produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
             produtoModelo.precoProduto = Convert.ToDecimal(txtPreco.Text);
-            MessageBox.Show($"{produtoModelo.precoProduto}");
+            //MessageBox.Show($"{produtoModelo.precoProduto}");
             produtoModelo.quantidadeProduto = Convert.ToDecimal(txtQuantidade.Text);
-            MessageBox.Show($"{produtoModelo.quantidadeProduto}");
+            //MessageBox.Show($"{produtoModelo.quantidadeProduto}");
 
             produtoModelo.validadeProduto = dateValidade.Value;
 
             if (checkBoxPerecivel.Checked) 
             { 
                 produtoModelo.pericivelProduto = true ;
-                MessageBox.Show($"{produtoModelo.pericivelProduto}");
+               // MessageBox.Show($"{produtoModelo.pericivelProduto}");
                 
                 
             } else 
@@ -158,7 +164,7 @@ namespace Testando
         {
             try
             {
-                produtoModelo.codigoProduto = Convert.ToInt32(txtCodigo.Text);
+                //produtoModelo.codigoProduto = Convert.ToInt32(txtCodigo.Text);
 
 
                 if (string.IsNullOrEmpty(produtoModelo.codigoProduto.ToString()))
@@ -182,6 +188,62 @@ namespace Testando
             {
                 MessageBox.Show("Erro" + ex.Message);
             }
+        }
+
+        private void ptbFoto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPesquisarProduto_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPesquisarProduto.Text))
+            {
+                sql = "SELECT * from produto";
+            }
+            else
+            {
+                bool teste = int.TryParse(txtPesquisarProduto.Text, out codigoProduto);
+                if (teste)
+                {
+                    sql = "SELECT * from produto where codigo =" + codigoProduto;
+                }
+                else
+                {
+                    sql = "SELECT * from produto where nome like '%" + txtPesquisarProduto.Text + "%'";
+                }
+
+            }
+            dtProduto.DataSource = pConexao.ObterDados(sql);
+        }
+
+        private void dtProduto_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            produtoModelo.codigoProduto = Convert.ToInt32(dtProduto.Rows[e.RowIndex].Cells[0].Value);
+            txtCodigo.Text = produtoModelo.codigoProduto.ToString();
+            txtDescricao.Text = dtProduto.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtPreco.Text = dtProduto.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtQuantidade.Text = dtProduto.Rows[e.RowIndex].Cells[3].Value.ToString();
+            if (Convert.ToUInt32(dtProduto.Rows[e.RowIndex].Cells[4].Value)==1)
+                {
+                checkBoxPerecivel.Checked = true;
+            }
+            else
+            {
+                checkBoxPerecivel.Checked = false;
+            }
+
+            dateValidade.Value = Convert.ToDateTime(dtProduto.Rows[e.RowIndex].Cells[5].Value);
+            ptbFoto.Image = Image.FromFile(dtProduto.Rows[e.RowIndex].Cells[6].Value.ToString());
+            
+           //if( pController.cadastrarProduto(produtoModelo, 3) == true);
+           // {
+           //     MessageBox.Show("Produto excluido com sucesso");
+           // } else
+           // {
+           //     MessageBox.Show("Não foi possível excluir o produto selecionado");
+           // }
+
         }
     }
 }

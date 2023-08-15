@@ -12,6 +12,7 @@ namespace Controller
         bool resultado = false; // verificar o resultado
         string sql;// estrutura sql
         Conexao con = new Conexao(); // chamo o metodo conexao
+       
 
         public bool cadastrarProduto (ProdutoModelo prod, int operacao)
         {

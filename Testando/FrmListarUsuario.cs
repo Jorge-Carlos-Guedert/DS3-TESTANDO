@@ -17,6 +17,7 @@ namespace Testando
 
         int valor; 
         UsuarioController uscontroller = new UsuarioController();
+        Conexao usConexao = new Conexao();
         public FrmListarUsuario()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace Testando
                 }
                 
             }
-            dtUsuario.DataSource = uscontroller.OberDados(sql);
+            dtUsuario.DataSource = usConexao.ObterDados(sql);
         }
 
         private void FrmListarUsuario_Load(object sender, EventArgs e)

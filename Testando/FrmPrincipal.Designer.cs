@@ -37,6 +37,7 @@
             this.relatórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuárioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listarProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +95,8 @@
             // relatórioToolStripMenuItem
             // 
             this.relatórioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuárioToolStripMenuItem1});
+            this.usuárioToolStripMenuItem1,
+            this.listarProdutoToolStripMenuItem});
             this.relatórioToolStripMenuItem.Name = "relatórioToolStripMenuItem";
             this.relatórioToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.relatórioToolStripMenuItem.Text = "Relatório";
@@ -102,7 +104,7 @@
             // usuárioToolStripMenuItem1
             // 
             this.usuárioToolStripMenuItem1.Name = "usuárioToolStripMenuItem1";
-            this.usuárioToolStripMenuItem1.Size = new System.Drawing.Size(114, 22);
+            this.usuárioToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.usuárioToolStripMenuItem1.Text = "Usuário";
             this.usuárioToolStripMenuItem1.Click += new System.EventHandler(this.usuárioToolStripMenuItem1_Click_1);
             // 
@@ -111,6 +113,13 @@
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // listarProdutoToolStripMenuItem
+            // 
+            this.listarProdutoToolStripMenuItem.Name = "listarProdutoToolStripMenuItem";
+            this.listarProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listarProdutoToolStripMenuItem.Text = "Listar Produto";
+            this.listarProdutoToolStripMenuItem.Click += new System.EventHandler(this.listarProdutoToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -142,5 +151,6 @@
         private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem produtoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listarProdutoToolStripMenuItem;
     }
 }

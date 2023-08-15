@@ -158,6 +158,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmListarProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListarProduto.Designer.cs">
+      <DependentUpon>FrmListarProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmListarProduto.resx">
+      <DependentUpon>FrmListarProduto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
