@@ -40,7 +40,7 @@ namespace Testando
             }
             codigoUsuario = usController.logar(us); // guarda o id do usuario retornado da consulta
 
-            MessageBox.Show("Usuário  ID=" + codigoUsuario.ToString());
+           // MessageBox.Show("Usuário  ID=" + codigoUsuario.ToString());
             if(usController.logar(us) >=1)
             {
                 this.Hide(); // oculta a janela

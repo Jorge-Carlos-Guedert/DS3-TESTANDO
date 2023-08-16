@@ -68,9 +68,9 @@ namespace Testando
             {
                 MessageBox.Show("Erro no cadastro");
             }
-            } catch(Exception ex)
+            } catch(Exception )
             {
-              MessageBox.Show("Preencha os campos para serem inseridos" + ex.Message);
+              MessageBox.Show("Preencha os campos para serem inseridos : "  );
             }
 
 

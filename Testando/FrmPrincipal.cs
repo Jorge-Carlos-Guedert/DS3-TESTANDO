@@ -20,7 +20,7 @@ namespace Testando
         public FrmPrincipal(int codigo) // passa o id por parametro do formprincipal
         {
             idUsu = codigo;
-            MessageBox.Show("Seja bem vindo Id" + codigo);
+           // MessageBox.Show("Seja bem vindo Id" + codigo);
 
             InitializeComponent();
         }
