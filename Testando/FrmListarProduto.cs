@@ -31,19 +31,19 @@ namespace Testando
             dt = conexao.ObterDados("SELECT * from produto"); // buscando e populando a datatable
             int registros; //ler a quantidade de dados 
             int x = 0, y = 0; // Posição na Tela
-            decimal qtdproduto; // guardar quantidade de itens no banco
+            int qtdproduto; // guardar quantidade de itens no banco
 
             // percorrer ou varrer os registros
             for (registros = 0; registros < dt.Rows.Count; registros++)
             {
                 Panel produto = new Panel(); // criando o painel de produto
                 produto.Location = new Point(x, y);// defino o local
-                produto.BorderStyle = BorderStyle.FixedSingle;
-                produto.Height = 250;
+                produto.BorderStyle = BorderStyle.FixedSingle; // borda do painel
+                produto.Height = 250; 
                 produto.Width = 250;
-                Label idproduto = new Label();// crio uma label
-                idproduto.Name = "codigo";
-                idproduto.Text = dt.Rows[registros][0].ToString(); //mostra o registro
+                Label idproduto = new Label();// crio uma label com id do produto
+                idproduto.Name = "codigo"; // nomeio a label 
+                idproduto.Text = dt.Rows[registros][0].ToString(); //mostra o registro carregado da linha coluna zero
                 //idproduto.Location = new Point(0, 0);
                 PictureBox foto = new PictureBox();// crio area de foto
                 foto.Location = new Point(20, 0);
@@ -62,28 +62,17 @@ namespace Testando
                 descricaoProduto.Location = new Point(20, 60);
                 TextBox quantidade = new TextBox();
                 quantidade.Name = "quantidade";
-
                 quantidade.Location = new Point(20, 110);
-
-                /*if (!string.IsNullOrEmpty(quantidade.Text)){
-
-
-                      if (qtdproduto >= Convert.ToInt32(quantidade))
-                      {
-                          MessageBox.Show("Quantidade indisponivel", "Alerta");
-
-                      }
-                      */
-                qtdproduto = Convert.ToDecimal(dt.Rows[registros][3].ToString());
-                quantidade.Leave += new EventHandler((sender1, e1) => Quantidade_Leave(sender1, e1, quantidade.Text, qtdproduto));
+                qtdproduto = Convert.ToInt32(dt.Rows[registros][3].ToString()); // variavel recebe dados do DB 
+                quantidade.Leave += new EventHandler((sender1, e1) =>       Quantidade_Leave(sender1, e1, quantidade.Text, qtdproduto));// evento deixar o foco do campo 
                 
-                if (qtdproduto > 0)
+                if (qtdproduto > 0) // valida quantidade no BD
                 {
-                    quantidade.Enabled = true;
+                    quantidade.Enabled = true; // desabilita textbox quantidade
                 }
                 else
                 {
-                    quantidade.Enabled = false;
+                    quantidade.Enabled = false; // habilita textbox quantidade
                 }
 
 
@@ -101,19 +90,18 @@ namespace Testando
             registrar.Font = new Font("Arial", 8);
             registrar.Height = 40;
             registrar.Width = 80;
-            // chamo o evento do clicar botao
+            
 
-            registrar.Click += new EventHandler((sender1, e1) => SelecionarClick(sender1, e1, idproduto.Text));
+            registrar.Click += new EventHandler((sender1, e1) => SelecionarClick(sender1, e1, idproduto.Text)); // chamo o evento do clicar botao
 
 
-            //adiciono conmponentes na tela
-            produto.Controls.Add(preco);
+                //adiciono conmponentes no painel 
+                produto.Controls.Add(preco);
             produto.Controls.Add(foto);
             produto.Controls.Add(idproduto);
             produto.Controls.Add(descricaoProduto);
             produto.Controls.Add(registrar);
             produto.Controls.Add(quantidade);
-
             flowLayoutPanel1.Controls.Add(produto);
 
             y += 100;
@@ -130,15 +118,19 @@ namespace Testando
             MessageBox.Show("Produto selecionado" + Id);
         }
 
-        private void Quantidade_Leave(object sender,EventArgs e,string quantidade,decimal qtdproduto)
+        private void Quantidade_Leave(object sender,EventArgs e,string quantidade,int qtdproduto)
         {
             if (!string.IsNullOrEmpty(quantidade))
             {
                                
-                if (qtdproduto > Convert.ToInt32(quantidade) || Convert.ToInt32(quantidade) <= 0)
+                if (qtdproduto < Convert.ToInt32(quantidade) && Convert.ToInt32(quantidade) > 0)
                 {
-                    MessageBox.Show("Quantidade indisponivel", "Alerta");
+                    MessageBox.Show($"Quantidade indisponivel,\n\n Quantidade máxima: {qtdproduto}", "Alerta");
 
+                }
+                else if (qtdproduto < Convert.ToInt32(quantidade) || Convert.ToInt32(quantidade) <= 0)
+                {
+                    MessageBox.Show($"Insira uma quantidade válida:", "Alerta" );
                 }
             }
         }
