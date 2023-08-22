@@ -21,7 +21,7 @@ namespace Controller
         public bool cadastrar(UsuarioModelo usuario) // passo o objeto pelo parametro
         {// declaro a variavel da resposta da query
             bool resultado = false;
-            string sql = " insert into usuario(nome,senha,nomeCompleto,email,telefoneContato,whatsapp,endereco,ceb,funcao,id_perfil) values('" + usuario.nome + "','" + usuario.senha+ "','" +usuario.nomeCompleto+"" +
+            string sql = " insert into usuario(nome,senha,nomeCompleto,email,telefoneContato,whatsapp,endereco,ceb,funcao,id_perfil) values('" + usuario.nome + "','" + con.getMD5Hash(usuario.senha)+ "','" +usuario.nomeCompleto+"" +
                 "','"+ usuario.email+"','"+ usuario.telefoneContato+"','"+usuario.whatsapp+"','"+usuario.endereco+"','"+usuario.ceb+"','"+usuario.funcao+"','"+usuario.idperfil+"')";
             // chamando minha conexao
             MySqlConnection sqlCon = con.getConexao();
@@ -62,7 +62,7 @@ namespace Controller
             cmd.CommandText = sql;
             // substituindo a variavel @___ pelo conteudo do objeto
             cmd.Parameters.AddWithValue("@nome", us.nome);
-            cmd.Parameters.AddWithValue("@senha", us.senha);
+            cmd.Parameters.AddWithValue("@senha", con.getMD5Hash(us.senha));
             cmd.Parameters.AddWithValue("@id", us.idusuario);
             cmd.Parameters.AddWithValue("@perfil", us.idperfil);
             if (cmd.ExecuteNonQuery() >= 1)
@@ -112,7 +112,7 @@ namespace Controller
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = sql;
             command.Parameters.AddWithValue("@usuario", us.nome);
-            command.Parameters.AddWithValue("@senha", us.senha);
+            command.Parameters.AddWithValue("@senha", con.getMD5Hash(us.senha));
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 
             return registro; // devolvo o idusuario encontrado no banco
@@ -122,7 +122,7 @@ namespace Controller
         {
            // chamo minha conexão mysql
             MySqlConnection SqlCon = con.getConexao();
-            // preparo o comendo sql
+            // preparo o comando sql
             UsuarioModelo us = new UsuarioModelo();
             MySqlCommand cmd = new MySqlCommand(sql, SqlCon);
 
