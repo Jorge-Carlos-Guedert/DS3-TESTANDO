@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using Modelo;
 using System.Data;
-using PdfSharp; // biblioteca gerar pdf
 using PdfSharp.Drawing;// para desenhar
 using PdfSharp.Pdf; // para conversão 
 using System.Diagnostics;
@@ -54,7 +49,7 @@ namespace Controller
         public bool editar(UsuarioModelo us)
         {
             bool resultado = false;
-            string sql = "UPDATE usuario set nome=@nome, senha=@senha, id_perfil=@perfil where idusuario=@id";
+            string sql = "UPDATE usuario set nome=@nome, senha=@senha, id_perfil=@perfil, email=@email where idusuario=@id";
             MySqlConnection sqlCon = con.getConexao();
             sqlCon.Open();
             MySqlCommand cmd = new MySqlCommand(sql, sqlCon);
@@ -65,6 +60,7 @@ namespace Controller
             cmd.Parameters.AddWithValue("@senha", con.getMD5Hash(us.senha));
             cmd.Parameters.AddWithValue("@id", us.idusuario);
             cmd.Parameters.AddWithValue("@perfil", us.idperfil);
+            cmd.Parameters.AddWithValue("@email", us.email);
             if (cmd.ExecuteNonQuery() >= 1)
                 resultado = true;
             sqlCon.Close();
@@ -93,6 +89,7 @@ namespace Controller
                 us.senha = registro["senha"].ToString();
                 us.idusuario = Convert.ToInt32(registro["idusuario"]);
                 us.idperfil = Convert.ToInt32(registro["id_perfil"]);
+                us.email = registro["email"].ToString();
             }
             sqlCon.Close();
             return us;

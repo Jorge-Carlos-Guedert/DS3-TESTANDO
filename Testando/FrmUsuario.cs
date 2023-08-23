@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Modelo;
 using Controller;
@@ -41,7 +35,7 @@ namespace Testando
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCadastrar_Click(object sender, EventArgs e)
         {
             UsuarioModelo usmodelo = new UsuarioModelo();
 
@@ -96,7 +90,7 @@ namespace Testando
             txtId.Text = dtUsuario.Rows[e.RowIndex].Cells["idusuario"].Value.ToString();
             txtsenha.Text = dtUsuario.Rows[e.RowIndex].Cells["senha"].Value.ToString();
             //txtnomeCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["nomeCompleto"].Value.ToString();
-            //txtEmail.Text = dtUsuario.Rows[e.RowIndex].Cells["email"].Value.ToString();
+            txtEmail.Text = dtUsuario.Rows[e.RowIndex].Cells["email"].Value.ToString();
             //txtTelContato.Text = dtUsuario.Rows[e.RowIndex].Cells["telefoneContato"].Value.ToString();
             //txtwhatsapp.Text = dtUsuario.Rows[e.RowIndex].Cells["whatsapp"].Value.ToString();
             //txtEndCompleto.Text = dtUsuario.Rows[e.RowIndex].Cells["endereco"].Value.ToString();
@@ -109,7 +103,7 @@ namespace Testando
         {
             // instanciar meu controller usuario
             UsuarioController usController = new UsuarioController();
-            dtUsuario.DataSource = usConexao.ObterDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
+            dtUsuario.DataSource = usConexao.ObterDados("select usuario.idusuario, usuario.nome, usuario.senha, perfil.perfil, usuario.email from usuario inner join perfil on usuario.id_perfil=perfil.id_perfil");
             //MessageBox.Show("Seja bem vindo(a)");
             cBoxPerfil.DataSource = usConexao.ObterDados("select * from perfil");
             cBoxPerfil.DisplayMember = "perfil";

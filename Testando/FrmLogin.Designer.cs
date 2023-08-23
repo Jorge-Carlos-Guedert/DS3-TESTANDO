@@ -34,6 +34,8 @@
             this.txtSenhaLogin = new System.Windows.Forms.TextBox();
             this.btnLogar = new System.Windows.Forms.Button();
             this.btnCancelarLogin = new System.Windows.Forms.Button();
+            this.btnEsqueceuASenha = new System.Windows.Forms.Button();
+            this.lblMensagem = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -89,11 +91,31 @@
             this.btnCancelarLogin.UseVisualStyleBackColor = true;
             this.btnCancelarLogin.Click += new System.EventHandler(this.btnCancelarLogin_Click);
             // 
+            // btnEsqueceuASenha
+            // 
+            this.btnEsqueceuASenha.Location = new System.Drawing.Point(512, 145);
+            this.btnEsqueceuASenha.Name = "btnEsqueceuASenha";
+            this.btnEsqueceuASenha.Size = new System.Drawing.Size(132, 23);
+            this.btnEsqueceuASenha.TabIndex = 6;
+            this.btnEsqueceuASenha.Text = "Esqueceu a senha ?";
+            this.btnEsqueceuASenha.UseVisualStyleBackColor = true;
+            this.btnEsqueceuASenha.Click += new System.EventHandler(this.btnEsqueceuASenha_Click);
+            // 
+            // lblMensagem
+            // 
+            this.lblMensagem.AutoSize = true;
+            this.lblMensagem.Location = new System.Drawing.Point(292, 198);
+            this.lblMensagem.Name = "lblMensagem";
+            this.lblMensagem.Size = new System.Drawing.Size(0, 13);
+            this.lblMensagem.TabIndex = 7;
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 321);
+            this.Controls.Add(this.lblMensagem);
+            this.Controls.Add(this.btnEsqueceuASenha);
             this.Controls.Add(this.btnCancelarLogin);
             this.Controls.Add(this.btnLogar);
             this.Controls.Add(this.txtSenhaLogin);
@@ -116,5 +138,7 @@
         private System.Windows.Forms.TextBox txtSenhaLogin;
         private System.Windows.Forms.Button btnLogar;
         private System.Windows.Forms.Button btnCancelarLogin;
+        private System.Windows.Forms.Button btnEsqueceuASenha;
+        private System.Windows.Forms.Label lblMensagem;
     }
 }

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
+using Modelo;
 using MySql.Data.MySqlClient; // biblioteca para o cliente Mysql
 
 namespace Controller
@@ -20,6 +18,11 @@ namespace Controller
         static private string StrCon = "server=" + servidor + ";database="
  + db + ";user id=" + usuario + ";password=" + senha;
         public MySqlConnection conn = null; // minha conexão
+
+        UsuarioModelo usuarioModelo = new UsuarioModelo(); // estancio um UsuarioModelo
+
+        Random Random = new Random();
+
         // metodo de obter a conexao com o mySql
 
         public MySqlConnection getConexao()
@@ -98,6 +101,79 @@ namespace Controller
                 sb.Append(hash[i].ToString("x2"));
             }
             return sb.ToString();
+        }
+
+        public string recuperaremail(string login)
+        { // testar a recuperação
+
+            try
+            {
+                DataTable dt = new DataTable();
+            string msg = null; //validação
+                string email = "joca12855@yahoo.com.br";
+                string senha = "Lander@25549";
+                if(login == null)
+                {
+                    msg = "Login está vazio";
+                }
+                else
+                {
+                    conn = getConexao(); // conectar com o DB
+                    conn.Open(); // Abrir o DB
+                    dt = ObterDados("SELECT * FROM heroku_e56db92fefe024d.usuario where nome ='"+login+"'");
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        // chamar o acesso ao email
+
+                        SmtpClient cliente = new SmtpClient(); // chamar o acesso ao email
+                        cliente.Host = "smtp.mail.yahoo.com"; // chamo o servidor
+                        cliente.Port = 465; // defino a porta de comunicação
+                        cliente.EnableSsl = true; // tipo de segurança SSL
+                        cliente.Credentials = new System.Net.NetworkCredential(email, senha); // chamo minhas credernciais
+                       
+                        MailMessage mail = new MailMessage(); // criar msg
+                        
+                        mail.Sender = new MailAddress(email, " Sistema TDS"); // configura o email de envio
+                        mail.From = new MailAddress(email,"Recuperar Senha:"); // configura o email de envio
+                        mail.To.Add(new MailAddress(dt.Rows[0][4].ToString(), dt.Rows[0][1].ToString())); // email do Usuário
+                        //mail.Subject = "Lembrar senha";
+                        //mail.Body = "Olá"+ dt.Columns["nome"].ToString() + "Sua senha é :" + Random.Next(2000);
+                        //mail.IsBodyHtml = true; // cria um arquivo HTML
+                        //mail.Priority = MailPriority.Normal; // prioridade de envio
+
+                        try
+                        {
+                            cliente.Send(mail);
+                            msg = "emaiil enviado com Sucesso";
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                            throw new Exception (" Erro ao enviar o email" + ex.Message);
+                        }
+
+
+
+                    }
+                    else
+                    {
+                        msg = " Usuário não localizado";
+                    }
+                    
+
+
+
+                }
+            return msg;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+ 
+
         }
     }
 }

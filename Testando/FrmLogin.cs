@@ -1,13 +1,6 @@
 ﻿using Controller;
 using Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -64,6 +57,13 @@ namespace Testando
         {
             Application.Exit();
             
+        }
+
+        private void btnEsqueceuASenha_Click(object sender, EventArgs e)
+        {
+            Conexao con = new Conexao();
+            
+            lblMensagem.Text = con.recuperaremail(txtUsuarioLogin.Text);
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Modelo
+﻿namespace Modelo
 {
     // Objeto usuário
     public class UsuarioModelo
@@ -24,7 +18,8 @@ namespace Modelo
 
 
         // construtor da classe modelo usuario
-        public UsuarioModelo() {
+        public UsuarioModelo()
+        {
             nome = null;
             senha = null;
             nomeCompleto = null;
