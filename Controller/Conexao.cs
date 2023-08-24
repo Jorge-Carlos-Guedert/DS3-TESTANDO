@@ -110,9 +110,7 @@ namespace Controller
             {
                 DataTable dt = new DataTable();
             string msg = null; //validação
-                string email = "joca12855@outlook.com";
-                string senha = "Lander@92612855";
-                string emailUsuario = "";
+               
                 if(login == null)
                 {
                     msg = "Login está vazio";
@@ -125,6 +123,10 @@ namespace Controller
 
                     if (dt.Rows.Count > 0)
                     {
+
+                        string email = "joca12855@outlook.com";
+                        string senha = "Lander@92612855";
+                        string emailUsuario = "";
                         // chamar o acesso ao email
 
                         SmtpClient cliente = new SmtpClient(); // chamar o acesso ao email
@@ -132,7 +134,7 @@ namespace Controller
                         cliente.Port = 587; // defino a porta de comunicação
                         cliente.EnableSsl = true; // tipo de segurança SSL
                         
-                        //cliente.Timeout = 50000;
+                        //cliente.Timeout = 2000;
                         cliente.UseDefaultCredentials = false;
                         cliente.Credentials = new System.Net.NetworkCredential(email, senha); // chamo minhas credernciais
                         cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -144,7 +146,8 @@ namespace Controller
                         emailUsuario = dt.Rows[0][4].ToString();
                         mail.To.Add(new MailAddress(emailUsuario, dt.Rows[0][1].ToString())); // email do Usuário
                         mail.Subject = "Lembrar senha";
-                        mail.Body = "Olá"+ dt.Rows[0][1].ToString() + "Sua senha é :" + Random.Next(200000).ToString();
+                        int senhaProvisoria = Random.Next(999999);
+                        mail.Body = "Olá "+ dt.Rows[0][1].ToString() + "\n Sua senha é :" + senhaProvisoria ;
                         mail.IsBodyHtml = true; // cria um arquivo HTML
                         mail.Priority = MailPriority.High; // prioridade de envio
 

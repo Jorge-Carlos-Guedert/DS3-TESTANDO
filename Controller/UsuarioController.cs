@@ -102,13 +102,13 @@ namespace Controller
             
             int registro; // retorna o numero de registros
 
-            string sql = "SELECT idusuario from usuario  where nome=@usuario and senha=@senha";
+            string sql = "SELECT idusuario from usuario  where nome=@nome and senha=@senha";
             MySqlConnection sqlCon = con.getConexao();
             sqlCon.Open();
             MySqlCommand command = new MySqlCommand(sql, sqlCon);
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = sql;
-            command.Parameters.AddWithValue("@usuario", us.nome);
+            command.Parameters.AddWithValue("@nome", us.nome);
             command.Parameters.AddWithValue("@senha", con.getMD5Hash(us.senha));
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 

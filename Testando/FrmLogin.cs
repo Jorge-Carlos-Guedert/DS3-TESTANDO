@@ -18,8 +18,8 @@ namespace Testando
             int codigoUsuario;
             UsuarioModelo us = new UsuarioModelo();
             UsuarioController usController = new UsuarioController();
-            us.nome = "Jorge"; //txtUsuarioLogin.Text;
-            us.senha = "Chefe";// txtSenhaLogin.Text;
+            us.nome = "Adm"; //*/txtUsuarioLogin.Text;
+            us.senha ="Adm";// */txtSenhaLogin.Text;
 
             if (string.IsNullOrEmpty(us.nome))
             {
