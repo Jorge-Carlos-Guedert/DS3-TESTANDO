@@ -110,8 +110,9 @@ namespace Controller
             {
                 DataTable dt = new DataTable();
             string msg = null; //validação
-                string email = "joca12855@yahoo.com.br";
-                string senha = "Lander@25549";
+                string email = "joca12855@outlook.com";
+                string senha = "Lander@92612855";
+                string emailUsuario = "";
                 if(login == null)
                 {
                     msg = "Login está vazio";
@@ -127,25 +128,33 @@ namespace Controller
                         // chamar o acesso ao email
 
                         SmtpClient cliente = new SmtpClient(); // chamar o acesso ao email
-                        cliente.Host = "smtp.mail.yahoo.com"; // chamo o servidor
-                        cliente.Port = 465; // defino a porta de comunicação
+                        cliente.Host = "smtp.office365.com"; // chamo o servidor
+                        cliente.Port = 587; // defino a porta de comunicação
                         cliente.EnableSsl = true; // tipo de segurança SSL
+                        
+                        //cliente.Timeout = 50000;
+                        cliente.UseDefaultCredentials = false;
                         cliente.Credentials = new System.Net.NetworkCredential(email, senha); // chamo minhas credernciais
+                        cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
                        
                         MailMessage mail = new MailMessage(); // criar msg
                         
                         mail.Sender = new MailAddress(email, " Sistema TDS"); // configura o email de envio
                         mail.From = new MailAddress(email,"Recuperar Senha:"); // configura o email de envio
-                        mail.To.Add(new MailAddress(dt.Rows[0][4].ToString(), dt.Rows[0][1].ToString())); // email do Usuário
-                        //mail.Subject = "Lembrar senha";
-                        //mail.Body = "Olá"+ dt.Columns["nome"].ToString() + "Sua senha é :" + Random.Next(2000);
-                        //mail.IsBodyHtml = true; // cria um arquivo HTML
-                        //mail.Priority = MailPriority.Normal; // prioridade de envio
+                        emailUsuario = dt.Rows[0][4].ToString();
+                        mail.To.Add(new MailAddress(emailUsuario, dt.Rows[0][1].ToString())); // email do Usuário
+                        mail.Subject = "Lembrar senha";
+                        mail.Body = "Olá"+ dt.Rows[0][1].ToString() + "Sua senha é :" + Random.Next(200000).ToString();
+                        mail.IsBodyHtml = true; // cria um arquivo HTML
+                        mail.Priority = MailPriority.High; // prioridade de envio
 
                         try
                         {
-                            cliente.Send(mail);
-                            msg = "emaiil enviado com Sucesso";
+                            cliente.SendAsync(email, emailUsuario, mail.Subject, mail.Body,1);
+                            //cliente.Send(mail);
+                            //cliente.Dispose();
+                            msg = "email enviado com Sucesso";
+                            
                         }
                         catch (Exception ex)
                         {
@@ -170,7 +179,7 @@ namespace Controller
             catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("Erro:" + ex.Message);
             }
  
 
