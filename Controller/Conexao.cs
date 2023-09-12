@@ -11,10 +11,10 @@ namespace Controller
     public class Conexao
     {
         // atributos da conexao
-        static private string servidor = "us-cdbr-east-06.cleardb.net";
-        static private string db = "heroku_e56db92fefe024d";
-        static private string usuario = "b18f10f8ad9d79";
-        static private string senha = "eabbaedc";
+        static private string servidor = "http://db4free.net/";
+        static private string db = "ds3testando";
+        static private string usuario = "jorgecguedert";
+        static private string senha = "Lander@255";
         static private string StrCon = "server=" + servidor + ";database="
  + db + ";user id=" + usuario + ";password=" + senha;
         public MySqlConnection conn = null; // minha conexão

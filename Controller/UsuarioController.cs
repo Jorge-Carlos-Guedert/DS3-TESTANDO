@@ -109,7 +109,7 @@ namespace Controller
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = sql;
             command.Parameters.AddWithValue("@nome", us.nome);
-            command.Parameters.AddWithValue("@senha", con.getMD5Hash(us.senha));
+            command.Parameters.AddWithValue("@senha", us.senha); //con.getMD5Hash(us.senha));
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 
             return registro; // devolvo o idusuario encontrado no banco
