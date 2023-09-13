@@ -31,7 +31,7 @@ namespace Testando
             dt = conexao.ObterDados("SELECT * from produto"); // buscando e populando a datatable
             int registros; //ler a quantidade de dados 
             int x = 0, y = 0; // Posição na Tela
-            int qtdproduto; // guardar quantidade de itens no banco
+            decimal qtdproduto; // guardar quantidade de itens no banco
 
             // percorrer ou varrer os registros
             for (registros = 0; registros < dt.Rows.Count; registros++)
@@ -63,7 +63,7 @@ namespace Testando
                 TextBox quantidade = new TextBox();
                 quantidade.Name = "quantidade";
                 quantidade.Location = new Point(20, 110);
-                qtdproduto = Convert.ToInt32(dt.Rows[registros][3].ToString()); // variavel recebe dados do DB 
+                qtdproduto = Convert.ToDecimal(dt.Rows[registros][3].ToString()); // variavel recebe dados do DB 
                 quantidade.Leave += new EventHandler((sender1, e1) =>       Quantidade_Leave(sender1, e1, quantidade.Text, qtdproduto));// evento deixar o foco do campo 
                 
                 if (qtdproduto > 0) // valida quantidade no BD
@@ -118,7 +118,7 @@ namespace Testando
             MessageBox.Show("Produto selecionado" + Id);
         }
 
-        private void Quantidade_Leave(object sender,EventArgs e,string quantidade,int qtdproduto)
+        private void Quantidade_Leave(object sender,EventArgs e,string quantidade,decimal qtdproduto)
         {
             if (!string.IsNullOrEmpty(quantidade))
             {
@@ -133,6 +133,11 @@ namespace Testando
                     MessageBox.Show($"Insira uma quantidade válida:", "Alerta" );
                 }
             }
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

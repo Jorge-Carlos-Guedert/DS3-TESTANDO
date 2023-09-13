@@ -47,11 +47,11 @@ namespace Testando
             usModelo = usController.CarregaUsuario(idUsu);
             
 
-            if (usModelo.idperfil == 4)
+            if (usModelo.idperfil == 1)
             {
                 usuárioToolStripMenuItem.Visible = true;
             }
-            else if (usModelo.idperfil == 24)
+            else if (usModelo.idperfil == 2)
             {
                 usuárioToolStripMenuItem.Visible = false;
             }

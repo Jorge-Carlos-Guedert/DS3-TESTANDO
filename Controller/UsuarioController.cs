@@ -16,9 +16,7 @@ namespace Controller
         public bool cadastrar(UsuarioModelo usuario) // passo o objeto pelo parametro
         {// declaro a variavel da resposta da query
             bool resultado = false;
-            string sql = " insert into usuario(nome,senha,nomeCompleto,email,telefoneContato,whatsapp,endereco,ceb,funcao,id_perfil) values('" + usuario.nome + "','" + con.getMD5Hash(usuario.senha)+ "','" +usuario.nomeCompleto+"" +
-                "','"+ usuario.email+"','"+ usuario.telefoneContato+"','"+usuario.whatsapp+"','"+usuario.endereco+"','"+usuario.ceb+"','"+usuario.funcao+"','"+usuario.idperfil+"')";
-            // chamando minha conexao
+            string sql = "insert into usuario(nome,senha,id_perfil,email) values(usuario.nome,usuario.senha,usuario.idperfil,usuario.email)";
             MySqlConnection sqlCon = con.getConexao();
             sqlCon.Open();// abrir o banco
             MySqlCommand cmd = new MySqlCommand(sql, sqlCon);
@@ -109,7 +107,7 @@ namespace Controller
             command.CommandType = System.Data.CommandType.Text;
             command.CommandText = sql;
             command.Parameters.AddWithValue("@nome", us.nome);
-            command.Parameters.AddWithValue("@senha", us.senha); //con.getMD5Hash(us.senha));
+            command.Parameters.AddWithValue("@senha", us.senha);//con.getMD5Hash(us.senha));
             registro = Convert.ToInt32(command.ExecuteScalar()); // retorna quantidade de registros encontrados
 
             return registro; // devolvo o idusuario encontrado no banco

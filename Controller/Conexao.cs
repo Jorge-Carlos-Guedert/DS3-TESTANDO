@@ -11,8 +11,8 @@ namespace Controller
     public class Conexao
     {
         // atributos da conexao
-        static private string servidor = "http://db4free.net/";
-        static private string db = "ds3testando";
+        static private string servidor = "db4free.net";
+        static private string db = "aulads3";
         static private string usuario = "jorgecguedert";
         static private string senha = "Lander@255";
         static private string StrCon = "server=" + servidor + ";database="
