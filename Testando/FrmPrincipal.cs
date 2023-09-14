@@ -1,13 +1,6 @@
 ﻿using Controller;
 using Modelo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Testando
@@ -84,6 +77,13 @@ namespace Testando
             FrmListarProduto listarProduto = new FrmListarProduto();
             listarProduto.MdiParent = this;
             listarProduto.Show();
+        }
+
+        private void cristalReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCristal frmCristal = new FrmCristal();
+            frmCristal.MdiParent = this;
+            frmCristal.Show();
         }
     }
 }

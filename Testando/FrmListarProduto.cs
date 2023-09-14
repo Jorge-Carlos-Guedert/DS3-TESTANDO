@@ -1,17 +1,8 @@
 ﻿using Controller;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Modelo;
-using System.Runtime.InteropServices;
-using ZstdSharp.Unsafe;
-using Microsoft.Win32;
 
 namespace Testando
 {
@@ -64,7 +55,7 @@ namespace Testando
                 quantidade.Name = "quantidade";
                 quantidade.Location = new Point(20, 110);
                 qtdproduto = Convert.ToDecimal(dt.Rows[registros][3].ToString()); // variavel recebe dados do DB 
-                quantidade.Leave += new EventHandler((sender1, e1) =>       Quantidade_Leave(sender1, e1, quantidade.Text, qtdproduto));// evento deixar o foco do campo 
+                quantidade.Leave += new EventHandler((sender1, e1) => Quantidade_Leave(sender1, e1, quantidade.Text, qtdproduto));// evento deixar o foco do campo 
                 
                 if (qtdproduto > 0) // valida quantidade no BD
                 {

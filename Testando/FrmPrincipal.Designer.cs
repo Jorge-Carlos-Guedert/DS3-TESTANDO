@@ -36,8 +36,9 @@
             this.produtoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuárioToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarProdutoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cristalReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,8 @@
             // 
             this.relatórioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuárioToolStripMenuItem1,
-            this.listarProdutoToolStripMenuItem});
+            this.listarProdutoToolStripMenuItem,
+            this.cristalReportToolStripMenuItem});
             this.relatórioToolStripMenuItem.Name = "relatórioToolStripMenuItem";
             this.relatórioToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.relatórioToolStripMenuItem.Text = "Relatório";
@@ -108,18 +110,25 @@
             this.usuárioToolStripMenuItem1.Text = "Usuário";
             this.usuárioToolStripMenuItem1.Click += new System.EventHandler(this.usuárioToolStripMenuItem1_Click_1);
             // 
-            // ajudaToolStripMenuItem
-            // 
-            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.ajudaToolStripMenuItem.Text = "Ajuda";
-            // 
             // listarProdutoToolStripMenuItem
             // 
             this.listarProdutoToolStripMenuItem.Name = "listarProdutoToolStripMenuItem";
             this.listarProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listarProdutoToolStripMenuItem.Text = "Listar Produto";
             this.listarProdutoToolStripMenuItem.Click += new System.EventHandler(this.listarProdutoToolStripMenuItem_Click);
+            // 
+            // ajudaToolStripMenuItem
+            // 
+            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
+            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // cristalReportToolStripMenuItem
+            // 
+            this.cristalReportToolStripMenuItem.Name = "cristalReportToolStripMenuItem";
+            this.cristalReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cristalReportToolStripMenuItem.Text = "Cristal Report";
+            this.cristalReportToolStripMenuItem.Click += new System.EventHandler(this.cristalReportToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -152,5 +161,6 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem produtoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarProdutoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cristalReportToolStripMenuItem;
     }
 }
